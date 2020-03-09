@@ -48,11 +48,12 @@ def biPartiteGraph(G):
 def findIndependantSet(B):
     """This function use a bipartite graph to foud independent set
     """
-    matching = bipartite.maximum_matching(B)
-    print(matching)
+    # matching = bipartite.maximum_matching(B)
+    # print(matching)
     # vertex_cover = bipartite.to_vertex_cover(B, matching)
     # independent_set = set(B) - vertex_cover
     # print(list(independent_set))
+    pass
 
 def printGraph(G,isBipartite=False):
     """This function is used to print a graph's informatin
@@ -61,6 +62,7 @@ def printGraph(G,isBipartite=False):
     print("Liste des arcs : " + str(G.edges()))
     print("Liste des arcs avec poids: " + str(G.edges.data('weight', default=1)))
     for i in G.nodes():
+        pass
         print("Les succeseurs de " + str(i) + " sont " + str(G.successors(i)))
     if not isBipartite:
         print("Plus long chemin : " + str(nx.dag_longest_path(G)) + ", longueur du plus long chemin : " + str(nx.dag_longest_path_length(G)))
