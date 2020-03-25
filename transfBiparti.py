@@ -3,8 +3,8 @@ import networkx as nx
 from divDeux import divDeux
 import networkx.algorithms.matching as mtc
 
-
-def transfBiparti (G):
+#retourne la liste des arêtes du graphe biparti H
+def transfBiparti_Edges (G):
     listEdges=[]
     A, B = divDeux(G)
     for n in nx.nodes(G):
@@ -13,19 +13,28 @@ def transfBiparti (G):
            listEdges.append((A[n-1], B[e-1]))
     return listEdges
 
+#retourne LE graph biparti H
+def transfBiparti_Graph(G):
+    listEdges=[]
+    A, B = divDeux(G)
+    for n in nx.nodes(G):
+       neighbo = G.successors(n)
+       for e in neighbo :
+           listEdges.append((A[n-1], B[e-1]))
+    H = nx.Graph()
+    H.add_edges_from(listEdges)
+    return H
 
-graph = nx.DiGraph()
-elist = [(1, 2), (2, 3), (1, 4), (1, 5), (4, 5), (2, 5)]
-graph.add_edges_from(elist)
-#nx.draw(graph, with_labels = True)
+if __name__ == "__main__":
+    graph = nx.DiGraph()
+    elist = [(1, 2), (2, 3), (1, 4), (4, 3), (4, 5), (5, 6), (4, 7), (7, 6)]
+    graph.add_edges_from(elist)
 
-biparti = transfBiparti(graph)
-print ("biparti", biparti)
+    H_edges = transfBiparti(graph)
+    print ("liste edges de H", H_edges)
 
-graphBi = nx.Graph()
-graphBi.add_edges_from(biparti)
-
-print ("maximal matching", mtc.maximal_matching(graphBi))
-nx.draw(graphBi, with_labels = True)
-plt.draw()
-plt.show()
+    H = nx.Graph()
+    H.add_edges_from(H_edges)
+    nx.draw(H, with_labels = True)
+    plt.draw()
+    plt.show()

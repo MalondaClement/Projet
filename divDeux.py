@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx 
 
+#division en 2 listes symétriques de noeuds à partir des noeuds du graphe G
 def divDeux(G):
     A = []
     B = []
@@ -9,18 +10,23 @@ def divDeux(G):
         B.append(str(n) + 'b')
     return A, B
 
-graph = nx.Graph()
-elist = [(1, 2), (2, 3), (1, 4), (1, 5), (4, 2), (2, 5)]
-graph.add_edges_from(elist)
 
-listA, listB = divDeux(graph)
+def abToNodes(x, y):
+    return (x.replace('a', ''), y.replace('b', ''))
 
-print ("liste A", listA)
-print ("liste B", listB)
+if __name__ == "__main__":
+    graph = nx.Graph()
+    elist = [(1, 2), (2, 3), (1, 4), (1, 5), (4, 2), (2, 5)]
+    graph.add_edges_from(elist)
 
-graphBi = nx.Graph()
-graphBi.add_nodes_from(listA + listB)
+    listA, listB = divDeux(graph)
 
-nx.draw(graphBi, with_labels = True)
-plt.draw()
-plt.show()
+    print ("liste A", listA)
+    print ("liste B", listB)
+
+    graphBi = nx.Graph()
+    graphBi.add_nodes_from(listA + listB)
+
+    nx.draw(graphBi, with_labels = True)
+    plt.draw()
+    plt.show()
