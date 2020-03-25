@@ -3,6 +3,7 @@ import networkx as nx
 import networkx.algorithms.matching as mtc
 from transfBiparti import transfBiparti_Graph
 
+#commentaire
 def couplageMax(H):
     return mtc.maximal_matching(H)
 

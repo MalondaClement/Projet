@@ -3,6 +3,7 @@ import networkx as nx
 from divDeux import divDeux
 import networkx.algorithms.matching as mtc
 
+#commentaire
 #retourne la liste des arêtes du graphe biparti H
 def transfBiparti_Edges (G):
     listEdges=[]

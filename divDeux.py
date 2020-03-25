@@ -10,7 +10,7 @@ def divDeux(G):
         B.append(str(n) + 'b')
     return A, B
 
-
+#commentaire
 def abToNodes(x, y):
     return (x.replace('a', ''), y.replace('b', ''))
 

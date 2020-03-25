@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import networkx as nx 
 from networkx.algorithms import bipartite
 
+#commentaire
 B = nx.Graph()
 B.add_nodes_from([1, 2, 3, 4], bipartite=0)
 B.add_nodes_from(['a', 'b', 'c'], bipartite = 1)

@@ -5,6 +5,7 @@ from divDeux import abToNodes
 from transfBiparti import transfBiparti_Graph
 from couplageMax import couplageMax
 
+#commentaire
 #G : graph orienté acyclique
 #CM : couplage max du graph biparti de G --> list de edges
 #retourne list des edges de partition
