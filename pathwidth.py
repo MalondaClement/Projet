@@ -1,11 +1,11 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from grapheGen import newGraph, drawGraph, printGraph
+from graphGen import newGraph, drawGraph, printGraph
 
-def addInitAndFinalState(G):
+def addInitAndFinalState(G, dict):
     newG = nx.DiGraph()
-    newG.add_nodes_from(G.nodes())
     newG.add_node('init')
+    newG.add_nodes_from(G.nodes())
     newG.add_node('final')
     for e in G.edges.data('weight', default=1):
         i,j,w = e
@@ -22,16 +22,24 @@ def addInitAndFinalState(G):
         for i in sTmp:
             S.append(i)
         if S == []:
-            newG.add_edge(n,'final',weight=4)
-    print(newG.edges.data('weight', default=1))
+            w = dict.get(n)
+            newG.add_edge(n,'final',weight=w)
     return newG
 
 def getC(G):
-    # changer 0 en init et 9 en final
     return nx.dijkstra_path_length(G,'init','final')
 
+def returnGraph(G):
+    rG = nx.DiGraph()
+    rG.add_nodes_from(G.nodes())
+    for e in G.edges.data('weight', default=1):
+        i, j, w = e
+        rG.add_edge(j,i,weight=w)
+    return rG
+
 if __name__ == "__main__":
-    G = newGraph(weight=True)
-    GWithIF = addInitAndFinalState(G)
-    c = getC(GWithIF)
-    print(c)
+    G, w = newGraph(weight=True)
+    GWithIF = addInitAndFinalState(G, w)
+    print(GWithIF.edges.data('weight', default=1))
+    rG = returnGraph(GWithIF)
+    print(rG.edges.data('weight', default=1))
