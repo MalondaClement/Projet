@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 from graphGen import newGraph, drawGraph, printGraph
 
 def addInitAndFinalState(G, dict):
+    """This function adds a commun initial (and final) state to the graph for each state without predecessor (or successor)
+        :param arg1: graph G
+        :param arg2: dictionary with the time of execution of each task
+        :type arg1: networkx DiGraph
+        :type arg2: dictionary
+        :return: graph newG with init and final node
+        :rtype: networkx DiGraph
+    """
     newG = nx.DiGraph()
     newG.add_node('init')
     newG.add_nodes_from(G.nodes())
@@ -27,9 +35,13 @@ def addInitAndFinalState(G, dict):
     return newG
 
 def getC(G):
+    """
+    """
     return nx.dijkstra_path_length(G,'init','final')
 
 def returnGraph(G):
+    """
+    """
     rG = nx.DiGraph()
     rG.add_nodes_from(G.nodes())
     for e in G.edges.data('weight', default=1):
