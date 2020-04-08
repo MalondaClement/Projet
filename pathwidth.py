@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from graphGen import newGraph, drawGraph, printGraph
+from exGraph import graph1, graph2, graph3
+
 
 def addInitAndFinalState(G, dict):
     """This function adds a commun initial (and final) state to the graph for each state without predecessor (or successor)
@@ -49,9 +51,20 @@ def returnGraph(G):
         rG.add_edge(j,i,weight=w)
     return rG
 
+def inter(G, dict):
+    nodes = G.nodes()
+    print(nodes)
+    G1 = addInitAndFinalState(G, dict)
+    G2 = returnGraph(G1)
+    dict = {}
+    for i in nodes:
+        r = nx.dijkstra_path_length(G1,'init',i)
+        d = nx.dijkstra_path_length(G2,'final',i)
+        dict[i] = (r,d)
+    return dict
+
 if __name__ == "__main__":
-    G, w = newGraph(weight=True)
-    GWithIF = addInitAndFinalState(G, w)
-    print(GWithIF.edges.data('weight', default=1))
-    rG = returnGraph(GWithIF)
-    print(rG.edges.data('weight', default=1))
+    G, w = graph2()
+    print(inter(G,w))
+    G, w = graph3()
+    print(inter(G,w))
