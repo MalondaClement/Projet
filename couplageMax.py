@@ -1,11 +1,22 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import networkx.algorithms.matching as mtc
-from transfBiparti import transfBiparti_Graph
+from transfBiparti import *
+from utils import *
 
-#commentaire
 def couplageMax(H):
-    return mtc.maximal_matching(H)
+    """return la liste des arcs appartenant au couplage maximal
+    """
+
+    cMax = edgesRightSens(mtc.maximal_matching(H))
+    nodes_cMax = edgesToNodes(cMax)
+    nodes_H = abConversion(nx.nodes(H))
+    
+    for n in nodes_H:
+        if(n not in nodes_cMax):
+            cMax.append( (n+'a', n+'b') )
+
+    return cMax
 
 if __name__ == "__main__":
     graph = nx.DiGraph()

@@ -2,6 +2,7 @@ import networkx as nx
 from networkx.algorithms import bipartite
 import matplotlib.pyplot as plt
 from random import randint
+from utils import *
 
 def edgesWeight(n):
     """This fuction create a dictionary with run time for each task
@@ -43,8 +44,14 @@ def newGraph(nodes=8, edges=12, weight=True):
 def printGraph(G,isBipartite=False):
     """This function is used to print a graph's information
     """
-    print("Liste des sommets : " + str(G.nodes()))
+    print("Liste des sommets de : " + str(G.nodes()))
     print("Liste des arcs avec poids: " + str(G.edges.data('weight', default=1)))
+
+def printGraphBiparti(H,isBipartite=False):
+    """This function is used to print a graph's information
+    """
+    print("Liste des sommets : " + str(H.nodes()))
+    print("Liste des arcs: ", listEdgesBiparti(H))
 
 def drawGraph(G):
     """This function to create a graphic representation of a graph
