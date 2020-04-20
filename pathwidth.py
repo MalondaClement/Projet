@@ -36,34 +36,68 @@ def addInitAndFinalState(G, dict):
             newG.add_edge(n,'final',weight=w)
     return newG
 
-def getC(G):
-    """
-    """
-    return nx.dijkstra_path_length(G,'init','final')
+# def getC(G):
+#     """
+#     """
+#     return nx.dijkstra_path_length(G,'init','final')
 
-def returnGraph(G):
+def reverseGraph(G,dict):
     """
     """
     rG = nx.DiGraph()
     rG.add_nodes_from(G.nodes())
-    for e in G.edges.data('weight', default=1):
-        i, j, w = e
+    for e in G.edges(): #.data('weight', default=1):
+        i, j, = e
+        w = 0
+        if i == 'init':
+            w = 0
+        else :
+            w = dict[i]
         rG.add_edge(j,i,weight=w)
+    print(G.edges.data('weight', default=1))
+    print(rG.edges.data('weight', default=1))
     return rG
 
 def inter(G, dict):
     nodes = G.nodes()
-    print(nodes)
     G1 = addInitAndFinalState(G, dict)
-    G2 = returnGraph(G1)
-    dict = {}
-    for i in nodes:
-        r = nx.dijkstra_path_length(G1,'init',i)
-        d = nx.dijkstra_path_length(G2,'final',i)
-        dict[i] = (r,d)
-    return dict
+    G2 = reverseGraph(G1,dict)
+    res = {}
+    topo = nx.topological_sort(G)
+    r = {}
+    for e in topo:
+        #print(e)
+        tmp = 0
+        for p in G1.predecessors(e):
+            if p == 'init':
+                tmp = 0
+            else:
+                tmp = max(tmp, r[p] + dict[e])
+        r[e] = tmp
+    m = max(r)
+    c = r[m]+1
+    print(m)
+    print(r[m])
+    print(c)
+    topo = nx.topological_sort(G2)
+    d = {}
+    for e in topo:
+        tmp = c + 1
+        if e == 'init' or e == 'final':
+            continue
+        for p in G2.predecessors(e):
+            if p == 'final':
+                tmp = c + 1
+            else:
+                tmp = min(tmp, d[p] - dict[e])
+        d[e] = tmp
+    for i in range(1, G.number_of_nodes()+1):
+        res[i] = (r[i],d[i])
+    return res
 
 if __name__ == "__main__":
+    G, w = graph1()
+    print(inter(G,w))
     G, w = graph2()
     print(inter(G,w))
     G, w = graph3()
