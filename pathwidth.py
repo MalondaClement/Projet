@@ -66,7 +66,6 @@ def inter(G, dict):
     topo = nx.topological_sort(G)
     r = {}
     for e in topo:
-        #print(e)
         tmp = 0
         for p in G1.predecessors(e):
             if p == 'init':
@@ -76,9 +75,6 @@ def inter(G, dict):
         r[e] = tmp
     m = max(r)
     c = r[m]+1
-    print(m)
-    print(r[m])
-    print(c)
     topo = nx.topological_sort(G2)
     d = {}
     for e in topo:
@@ -98,7 +94,9 @@ def inter(G, dict):
 if __name__ == "__main__":
     G, w = graph1()
     print(inter(G,w))
+    print("\n")
     G, w = graph2()
     print(inter(G,w))
+    print("\n")
     G, w = graph3()
     print(inter(G,w))
