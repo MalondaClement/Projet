@@ -89,7 +89,8 @@ def pw(m, G, dict):
     tab = set()
     res = {}
     for i in dict_inter:
-        tab.add(i)
+        tab.add(dict_inter[i][0])
+        tab.add(dict_inter[i][1])
     for i in tab:
         res[i] = 0
         for e in dict_inter:
