@@ -48,15 +48,3 @@ def partition(CM):
             if(not ajout):
                 P.append([x, y])
     return P               
-
-if __name__ == "__main__":
-    graph = nx.DiGraph()
-    elist = [(1, 2), (2, 3), (1, 4), (4, 3), (4, 5), (5, 6), (4, 7), (7, 6)]
-    graph.add_edges_from(elist)
-
-    couplage = couplageMax(transfBiparti_Graph(graph))
-    anti = antichaine(graph, couplage)
-    print("arêtes du graph G : ", elist)
-    print("couplage max CM : ", couplage)
-    print("max antichaine : ", anti)
-    print("partition P : ", partition(anti))

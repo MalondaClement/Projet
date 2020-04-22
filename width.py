@@ -6,8 +6,7 @@ from couplageMax import *
 from exGraph import *
 
 def width(G):
-    trans = transfBiparti(G)
-    couplage = couplageMax(trans)
+    couplage = couplageMax(transfBiparti(G))
     print ("couplage : ", couplage)
     part = partition(couplage)
     print("partition P :", part)
