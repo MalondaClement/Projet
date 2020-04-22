@@ -80,7 +80,8 @@ def inter(G, dict):
             else:
                 tmp = min(tmp, d[p] - dict[e])
         d[e] = tmp
-    for i in range(1, G.number_of_nodes()+1):
+    print(G.nodes())
+    for i in G.nodes():
         res[i] = (r[i],d[i])
     return res
 
@@ -106,7 +107,9 @@ if __name__ == "__main__":
     print(inter(G,w))
     print("\n")
     G, w = graph2()
+    print(pw(2,G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph3()
+    print(pw(2,G, w))
     print(inter(G,w))
