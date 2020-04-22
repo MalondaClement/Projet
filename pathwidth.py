@@ -36,11 +36,6 @@ def addInitAndFinalState(G, dict):
             newG.add_edge(n,'final',weight=w)
     return newG
 
-# def getC(G):
-#     """
-#     """
-#     return nx.dijkstra_path_length(G,'init','final')
-
 def reverseGraph(G,dict):
     """
     """
@@ -54,8 +49,6 @@ def reverseGraph(G,dict):
         else :
             w = dict[i]
         rG.add_edge(j,i,weight=w)
-    print(G.edges.data('weight', default=1))
-    print(rG.edges.data('weight', default=1))
     return rG
 
 def inter(G, dict):
@@ -74,7 +67,7 @@ def inter(G, dict):
                 tmp = max(tmp, r[p] + dict[e])
         r[e] = tmp
     m = max(r)
-    c = r[m]+1
+    c = r[m]+dict[m]
     topo = nx.topological_sort(G2)
     d = {}
     for e in topo:
@@ -91,8 +84,24 @@ def inter(G, dict):
         res[i] = (r[i],d[i])
     return res
 
+def pw(m, G, dict):
+    dict_inter = inter(G, dict)
+    tab = set()
+    res = {}
+    for i in dict_inter:
+        tab.add(i)
+    for i in tab:
+        res[i] = 0
+        for e in dict_inter:
+            if i >= dict_inter[e][0] and i <= dict_inter[e][1]:
+                res[i] += 1
+    return res
+
+
+
 if __name__ == "__main__":
     G, w = graph1()
+    print(pw(2,G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph2()
