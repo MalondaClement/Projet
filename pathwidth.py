@@ -80,7 +80,6 @@ def inter(G, dict):
             else:
                 tmp = min(tmp, d[p] - dict[e])
         d[e] = tmp
-    print(G.nodes())
     for i in G.nodes():
         res[i] = (r[i],d[i])
     return res
