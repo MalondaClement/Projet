@@ -10,18 +10,18 @@ def transfBiparti(G):
     """
     H = nx.Graph()
     A, B = nodesBiparti(G)
-    for n in nx.nodes(G):
-        neighbo = G.successors(n)
-        for e in neighbo :
-            H.add_edge(A[n], B[e])
+    for e in nx.edges(G):
+        x, y = e
+        H.add_edge(A[x], B[y])
     return H
 
 def couplageMax(H):
     """return la liste des arcs appartenant au couplage maximal
     """
 
-    cMax = edgesRightSens(mtc.maximal_matching(H))
-    nodes_cMax = edgesToNodes(cMax)
+    cMax = (list)(mtc.maximal_matching(H))
+    print("cMax :", cMax)
+    nodes_cMax = abConversion(edgesToNodes(cMax))
     nodes_H = abConversion(nx.nodes(H))
     
     for n in nodes_H:

@@ -30,7 +30,7 @@ def edgesToNodes(L):
             res.append(x)
         if y not in res :
             res.append(y)
-    return abConversion(res)
+    return res
 
 def edgesRightSens(L):
     res=[]
@@ -46,7 +46,14 @@ def listEdgesBiparti(H):
     """return the edges list from a graph biparti with the good direction of the axes
         for all (x,y) : x is from side A et y from side B
     """
-    return edgesRightSens(nx.edges(H))
+    listeEdges = []
+    for e in nx.edges(H):
+        x, y = e
+        if(x[-1]=='b'):
+            listeEdges.append((y, x))
+        else :
+            listeEdges.append((x, y))
+    return listeEdges
 
 def edgeABtoedge(e):
     """ edge --> edge
