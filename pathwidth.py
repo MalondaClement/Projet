@@ -82,7 +82,7 @@ def inter(G, dict):
         d[e] = tmp
     for i in G.nodes():
         res[i] = (r[i],d[i])
-    return res, m
+    return res, c
 
 def pw(G, dict):
     dict_inter, m = inter(G, dict)
