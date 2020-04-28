@@ -29,7 +29,7 @@ def couplageMax(H):
             cMax.append( (n+'a', n+'b') )
     return cMax
 
-def antichaine(CM):
+def conversion(CM):
     """list du couplage maximale avec les sommets du graph biparti (a/b)
         return list du couplage maximale sans les suffixes 'a'/'b'
     """ 
@@ -45,10 +45,10 @@ def partition(CM):
         avec sommets uniques du graph orienté acyclique
     """
     P = []
-    antiCh = antichaine(CM)
-    print("antichaine", antiCh)
+    couplage = conversion(CM)
+    print("couplage :", couplage)
 
-    for c in antiCh:
+    for c in couplage:
         x, y = c
         if(len(P)==0):
             P.append([x,y])
