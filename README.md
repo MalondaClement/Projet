@@ -3,21 +3,6 @@ Projet de recherche UE LU3IN013
 
 #Plan des fonctions de l'évaluation de l'antichaîne maximale w(G)
 
-dans partition.py
-    - partition (couplageMax)
-        --> antichaine (couplageMax)
-    - antichaine (couplageMax)
-
-dans couplageMax.py
-    - couplageMax(H)
-        --> edgesRightSens(list)
-        --> edgesToNodes(list)
-        --> abConversion(list)
-
-dans transfBiparti.py
-    - transfBiparti(graph)
-        --> nodesBiparti(G)
-
 dans utils.py
     - nodesBiparti(G)
         --> créer les deux list A et B des n sommets du graph G
@@ -26,17 +11,11 @@ dans utils.py
     - abConversion(list)
         --> à partir de list de sommets A/B, supprime 'a'/'b' de chaque sommet
         
-        
     - edgesToNodes(list)
         --> abConversion(list)
         --> à partir d'une list d'arc, créer la liste de sommets qui  y apparaissent 
         --> permet d'avoir liste des sommets présent dans couplageMax
         --> ajout si besoin d'un arc [xi, xi] pour un sommet xi étant isolé et n'appartenant pas au couplageMax
-
-    - edgesRightSens(list)
-        --> à partir d'une liste d'arc appartenant à un graph biparti
-        --> remet dans le bon sens tel que pour tout sommet xA in A et tout sommet yB in B
-        --> on a (xA, yB) dans le bon sens
 
     - listEdgesBiparti(graph)
         --> edgesRightSens(list)
@@ -47,4 +26,16 @@ dans utils.py
         --> à partir d'un arc 'a'/'b' on elimine les suffixes 'a' et 'b'
         --> retour toujours un arc
 
+dans width.py
+    - transfBiparti(graph)
+        --> nodesBiparti(G) 
+
+    - couplageMax(H)
+        --> edgesToNodes(list)
+        --> abConversion(list)
+
+    - antichaine (couplageMax)
+        --> edgeABtoedge(edge)
     
+    - partition (couplageMax)
+        --> antichaine (couplageMax)      
