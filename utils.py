@@ -53,3 +53,18 @@ def edgeABtoedge(e):
         return (x.replace('a', ''), y.replace('b', ''))
     
     return (x.replace('b', ''), y.replace('a', ''))
+
+def fusionPart(P):
+    for i in range(len(P)-1):        
+        j = i + 1
+        while(j<len(P)):
+            list1 = P[i]
+            list2 = P[j]
+            if (list(set(list1).intersection(list2))):
+                temp = list(dict.fromkeys(list1 + list2))
+                P.remove(list1)
+                P.remove(list2)
+                P.append(temp)
+                j = i
+            j = j + 1
+    return P

@@ -46,6 +46,7 @@ def partition(CM):
     """
     P = []
     antiCh = antichaine(CM)
+    print("antichaine", antiCh)
 
     for c in antiCh:
         x, y = c
@@ -58,19 +59,21 @@ def partition(CM):
         else:
             ajout = False
 
-            for i in range(len(P)) :
-                if(x in P[i]):
-                    if(y not in P[i]):   
-                        P[i].append(y)
+            for k in range(len(P)) :
+                if(x in P[k]):
+                    if(y not in P[k]): 
+                        P[k].append(y)
                         ajout = True
                 
-                elif(y in P[i]):
-                    if(x not in P[i]):
-                        P[i].append(x)
+                elif(y in P[k]):
+                    if(x not in P[k]):
+                        P[k].append(x)
                         ajout = True
             
             if(not ajout):
                 P.append([x, y])
+
+    P = fusionPart(P)
     return P               
 
 def width(G):
