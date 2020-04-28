@@ -66,7 +66,9 @@ def inter(G, dict):
             else:
                 tmp = max(tmp, r[p] + dict[e])
         r[e] = tmp
-    m = max(r)
+    
+    rbis = [(value, key) for key, value in r.items()]
+    m = max(rbis)[1]
     c = r[m]+dict[m]
     topo = nx.topological_sort(G2)
     d = {}
@@ -84,7 +86,7 @@ def inter(G, dict):
         res[i] = (r[i],d[i])
     return res, c
 
-def pw(G, dict):
+def pathwidth(G, dict):
     dict_inter, m = inter(G, dict)
     tab = set()
     res = {}
@@ -102,13 +104,13 @@ def pw(G, dict):
 
 if __name__ == "__main__":
     G, w = graph1()
-    print(pw(G, w))
+    print("pw :", pathwidth(G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph2()
-    print(pw(G, w))
+    print("pw :", pathwidth(G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph3()
-    print(pw(G, w))
+    print("pw :", pathwidth(G, w))
     print(inter(G,w))

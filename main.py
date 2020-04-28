@@ -4,73 +4,42 @@ from width import *
 from graphGen import *
 from exGraph import *
 
-fichier = open("data.txt", "a")
+def main(G, dico, fichier):
+    nodes = nx.nodes(G)
+    edges = nx.edges(G)
 
-#G,dict = newGraph(param)
-G, dico = graph1()
-pathwidth = pw(2, G, dico)
-w = width(G)
-nodes = nx.nodes(G)
-edges = nx.edges(G)
-fichier.write("\n graphe : sommets = { ")
+    pw = pathwidth(G, dico)
+    w = width(G)
 
-for n in nodes : 
-    fichier.write(str(n))
-    fichier.write(" ")
+    fichier.write("\n graphe : sommets = { ")
 
-fichier.write("} \n aretes = { ")
+    for n in nodes : 
+        fichier.write(str(n))
+        fichier.write(" ")
 
-for e in edges :
-    fichier.write(str(e))
+    fichier.write("} \n aretes = { ")
 
-fichier.write(" } \n resultat : pathwidth = ")
-fichier.write(str(pathwidth))
-fichier.write(" et width = ")
-fichier.write(str(w))
-print("Fait")
+    for e in edges :
+        fichier.write(str(e))
 
-G, dico = graph2()
-pathwidth = pw(5, G, dico)
-w = width(G)
-nodes = nx.nodes(G)
-edges = nx.edges(G)
-fichier.write("\n graphe : sommets = { ")
+    fichier.write(" } \n resultat : pathwidth = ")
+    fichier.write(str(pw))
+    fichier.write(" et width = ")
+    fichier.write(str(w))
+    print("Fait")
 
-for n in nodes : 
-    fichier.write(str(n))
-    fichier.write(" ")
+if __name__ == "__main__":
+    
+    fichier = open("data.txt", "a")
 
-fichier.write("} \n aretes = { ")
+    #G,dict = newGraph(param)
+    G1, dico1 = graph1()
+    main(G1, dico1, fichier)
 
-for e in edges :
-    fichier.write(str(e))
+    G2, dico2 = graph2()
+    main(G2, dico2, fichier)
 
-fichier.write(" } \n resultat : pathwidth = ")
-fichier.write(str(pathwidth))
-fichier.write(" et width = ")
-fichier.write(str(w))
-print("Fait")
+    G3, dico3 = graph3()
+    main(G3, dico3, fichier)
 
-G, dico = graph3()
-pathwidth = pw(3, G, dico)
-w = width(G)
-nodes = nx.nodes(G)
-edges = nx.edges(G)
-fichier.write("\n graphe : sommets = { ")
-
-for n in nodes : 
-    fichier.write(str(n))
-    fichier.write(" ")
-
-fichier.write("} \n aretes = { ")
-
-for e in edges :
-    fichier.write(str(e))
-
-fichier.write(" } \n resultat : pathwidth = ")
-fichier.write(str(pathwidth))
-fichier.write(" et width = ")
-fichier.write(str(w))
-print("Fait")
-
-fichier.close
+    fichier.close
