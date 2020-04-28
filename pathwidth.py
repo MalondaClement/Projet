@@ -82,10 +82,10 @@ def inter(G, dict):
         d[e] = tmp
     for i in G.nodes():
         res[i] = (r[i],d[i])
-    return res
+    return res, m
 
-def pw(m, G, dict):
-    dict_inter = inter(G, dict)
+def pw(G, dict):
+    dict_inter, m = inter(G, dict)
     tab = set()
     res = {}
     for i in dict_inter:
@@ -96,19 +96,19 @@ def pw(m, G, dict):
         for e in dict_inter:
             if i >= dict_inter[e][0] and i <= dict_inter[e][1]:
                 res[i] += 1
-    return max(res[max(res)], m)
+    return min(max(res.values()), m)
 
 
 
 if __name__ == "__main__":
     G, w = graph1()
-    print(pw(2,G, w))
+    print(pw(G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph2()
-    print(pw(5,G, w))
+    print(pw(G, w))
     print(inter(G,w))
     print("\n")
     G, w = graph3()
-    print(pw(3,G, w))
+    print(pw(G, w))
     print(inter(G,w))
