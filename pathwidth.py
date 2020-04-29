@@ -37,7 +37,13 @@ def addInitAndFinalState(G, dict):
     return newG
 
 def reverseGraph(G,dict):
-    """
+    """This fuction take an directed graph and reverse it
+        :param arg1: graph G
+        :param arg2: dictionary with the time of execution of each task
+        :type arg1: networkx DiGraph
+        :type arg2: dictionary
+        :return: graph newG with init and final node
+        :rtype: networkx DiGraph
     """
     rG = nx.DiGraph()
     rG.add_nodes_from(G.nodes())
@@ -52,6 +58,14 @@ def reverseGraph(G,dict):
     return rG
 
 def inter(G, dict):
+    """
+        :param arg1: graph G
+        :param arg2: dictionary with the time of execution of each task
+        :type arg1: networkx DiGraph
+        :type arg2: dictionary
+        :return: an execution interval for every task
+        :rtype: dictionary
+    """
     nodes = G.nodes()
     G1 = addInitAndFinalState(G, dict)
     G2 = reverseGraph(G1,dict)
@@ -66,7 +80,7 @@ def inter(G, dict):
             else:
                 tmp = max(tmp, r[p] + dict[e])
         r[e] = tmp
-    
+
     rbis = [(value, key) for key, value in r.items()]
     m = max(rbis)[1]
     c = r[m]+dict[m]
@@ -84,10 +98,18 @@ def inter(G, dict):
         d[e] = tmp
     for i in G.nodes():
         res[i] = (r[i],d[i])
-    return res, c
+    return res
 
 def pathwidth(G, dict):
-    dict_inter, m = inter(G, dict)
+    """
+        :param arg1: graph G
+        :param arg2: dictionary with the time of execution of each task
+        :type arg1: networkx DiGraph
+        :type arg2: dictionary
+        :return: pathwidth of G
+        :rtype: int
+    """
+    dict_inter = inter(G, dict)
     tab = set()
     res = {}
     for i in dict_inter:
@@ -98,7 +120,7 @@ def pathwidth(G, dict):
         for e in dict_inter:
             if i >= dict_inter[e][0] and i <= dict_inter[e][1]:
                 res[i] += 1
-    return min(max(res.values()), m)
+    return max(res.values())
 
 
 

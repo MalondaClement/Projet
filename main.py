@@ -6,14 +6,14 @@ from exGraph import *
 
 def main(G, dico, fichier):
     nodes = nx.nodes(G)
-    edges = nx.edges(G)
+    edges = G.edges.data('weight', default=1) #nx.edges(G)
 
     pw = pathwidth(G, dico)
     w = width(G)
 
     fichier.write("\n graphe : sommets = { ")
 
-    for n in nodes : 
+    for n in nodes :
         fichier.write(str(n))
         fichier.write(" ")
 
@@ -29,17 +29,11 @@ def main(G, dico, fichier):
     print("Fait")
 
 if __name__ == "__main__":
-    
+
     fichier = open("data.txt", "a")
-
-    #G,dict = newGraph(param)
-    G1, dico1 = graph1()
-    main(G1, dico1, fichier)
-
-    G2, dico2 = graph2()
-    main(G2, dico2, fichier)
-
-    G3, dico3 = graph3()
-    main(G3, dico3, fichier)
+    for i in range(5,25):
+        for j in range(15):
+            G, dict = newGraph(i, i*3)
+            main(G, dict, fichier)
 
     fichier.close
