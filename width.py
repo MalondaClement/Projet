@@ -46,7 +46,6 @@ def partition(CM):
     """
     P = []
     couplage = conversion(CM)
-    print("couplage :", couplage)
 
     for c in couplage:
         x, y = c
@@ -85,7 +84,7 @@ def width(G):
 
 if __name__ == "__main__":
     print ("Affichage d'un graphe généré aléatoirement")
-    graph, dico = graph3()
+    graph, dico = graph1()
     printGraph(graph)
     print(dico)
     print("edges de graph", nx.edges(graph))
