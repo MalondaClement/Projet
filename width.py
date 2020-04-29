@@ -20,10 +20,10 @@ def couplageMax(H):
     """
 
     cMax = (list)(mtc.maximal_matching(H))
-    print("cMax :", cMax)
+    # print("cMax :", cMax)
     nodes_cMax = abConversion(edgesToNodes(cMax))
     nodes_H = abConversion(nx.nodes(H))
-    
+
     for n in nodes_H:
         if(n not in nodes_cMax):
             cMax.append( (n+'a', n+'b') )
@@ -32,7 +32,7 @@ def couplageMax(H):
 def conversion(CM):
     """list du couplage maximale avec les sommets du graph biparti (a/b)
         return list du couplage maximale sans les suffixes 'a'/'b'
-    """ 
+    """
     listEdges=[]
     for e in CM:
         x, y = edgeABtoedge(e)
@@ -41,7 +41,7 @@ def conversion(CM):
 
 def partition(CM):
     """couplagemax d'un graphe biparti --> partition du graphe orienté acyclique correspond
-        conversion du couplemage maximale du graph biparti 
+        conversion du couplemage maximale du graph biparti
         avec sommets uniques du graph orienté acyclique
     """
     P = []
@@ -51,43 +51,43 @@ def partition(CM):
         x, y = c
         if(len(P)==0):
             P.append([x,y])
-        
+
         elif(x==y):
             P.append([x])
-        
+
         else:
             ajout = False
 
             for k in range(len(P)) :
                 if(x in P[k]):
-                    if(y not in P[k]): 
+                    if(y not in P[k]):
                         P[k].append(y)
                         ajout = True
-                
+
                 elif(y in P[k]):
                     if(x not in P[k]):
                         P[k].append(x)
                         ajout = True
-            
+
             if(not ajout):
                 P.append([x, y])
 
     P = fusionPart(P)
-    return P               
+    return P
 
 def width(G):
     couplage = couplageMax(transfBiparti(G))
-    print ("couplage : ", couplage)
+    # print ("couplage : ", couplage)
     part = partition(couplage)
-    print("partition P :", part)
+    # print("partition P :", part)
     return len(part)
 
 if __name__ == "__main__":
-    print ("Affichage d'un graphe généré aléatoirement")
+    # print ("Affichage d'un graphe généré aléatoirement")
     graph, dico = graph1()
-    printGraph(graph)
-    print(dico)
-    print("edges de graph", nx.edges(graph))
+    # printGraph(graph)
+    # print(dico)
+    # print("edges de graph", nx.edges(graph))
 
     drawGraph(graph)
-    print(width(graph))
+    # print(width(graph))

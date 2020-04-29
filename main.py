@@ -29,7 +29,7 @@ def main(G, dico, fichier):
     fichier.write(str(pw))
     fichier.write(" et width = ")
     fichier.write(str(w))
-    print("Fait")
+    # print("Fait")
     return pw, w
 
 if __name__ == "__main__":
@@ -39,11 +39,11 @@ if __name__ == "__main__":
     res_moy_pw = []
     res_moy_w = []
 
-    for i in range(5,100):
+    for i in range(5,500):
         fichier.write("\n")
         tmp_pw = []
         tmp_w = []
-        for j in range(15):
+        for j in range(1):
             G, dict = newGraph(i, i*3)
             pw, w = main(G, dict, fichier)
             tmp_pw.append(pw)
@@ -57,6 +57,7 @@ if __name__ == "__main__":
     plt.plot(size, res_moy_w)
     plt.xlabel('Nombre de sommets dans le graphe')
     plt.legend(['pw','w'])
+    plt.savefig('imageRes.png')
     plt.show()
 
     fichier.close
