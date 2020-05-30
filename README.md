@@ -1,9 +1,10 @@
-# Projet
-Projet de recherche UE LU3IN013
+# Mesures du parallélisme pour un problème d'ordonnacement de tâches dépendantes.
+Projet réaliser dans le cadre  de l'UE recherche LU3IN013
+Par Emmanuelle Amann et Clément Malonda
 
 Pour lancer le code faire `python3 main.py`
 
-# Plan des fonctions de l'évaluation de l'antichaîne maximale w(G)
+## Plan des fonctions de l'évaluation de l'antichaîne maximale w(G)
 
 dans utils.py
     - nodesBiparti(G)
