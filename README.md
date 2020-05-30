@@ -1,7 +1,9 @@
 # Projet
 Projet de recherche UE LU3IN013
 
-#Plan des fonctions de l'évaluation de l'antichaîne maximale w(G)
+Pour lancer le code faire `python3 main.py`
+
+# Plan des fonctions de l'évaluation de l'antichaîne maximale w(G)
 
 dans utils.py
     - nodesBiparti(G)
